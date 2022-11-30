@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from core_cnhs_2.forms import Registros_CNH_Form, Registros_JM_Form, Registros_CRT_Form, Registros_CEDV_Form, Inscricao_Candidatos_Form, Correcao_CNH_Form, Correcao_CRT_Form, Correcao_CEDV_Form, Correcao_JM_Form
-from core_cnhs_2.models import Candidatos
-from django.contrib.auth.models import User
+from core_cnhs_2.models import Candidatos 
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -82,6 +81,7 @@ def lista_candidatos(request):
 ##############################################Formulários de inserção/atualização de dados########################################
 #Formulário de ATUALIZAÇÃO do setor jm
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_jm',login_url='/login/')
 def form_atualizacao_jm(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Registros_JM_Form(instance=candidatos) 
@@ -102,6 +102,7 @@ def form_atualizacao_jm(request, id):
 
 #Formulário de ATUALIZAÇÃO do setor crt
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_crt',login_url='/login/')
 def form_atualizacao_crt(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Registros_CRT_Form(instance=candidatos) 
@@ -124,6 +125,7 @@ def form_atualizacao_crt(request, id):
 
 #Formulário de ATUALIZAÇÃO do setor cedv
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_cedv',login_url='/login/')
 def form_atualizacao_cedv(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Registros_CEDV_Form(instance=candidatos) 
@@ -143,6 +145,7 @@ def form_atualizacao_cedv(request, id):
 
 #Formulário de ATUALIZAÇÃO do setor cnh
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_cnh',login_url='/login/')
 def form_atualizacao_cnh(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Registros_CNH_Form(instance=candidatos) 
@@ -170,6 +173,7 @@ def form_atualizacao_cnh(request, id):
 
 
 @login_required(login_url='/login/')  
+@permission_required('core_cnhs_2.pode_manipular_cnh', login_url='/login/')
 def form_inscrição(request):
         form = Inscricao_Candidatos_Form(request.POST or None)
             
@@ -182,6 +186,7 @@ def form_inscrição(request):
 
 ##############################################Formulários de Correção de dados########################################
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_jm',login_url='/login/')
 def form_correcao_jm(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Correcao_JM_Form(instance=candidatos) 
@@ -206,6 +211,7 @@ def form_correcao_jm(request, id):
 
 
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_crt',login_url='/login/') 
 def form_correcao_crt(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Correcao_CRT_Form(instance=candidatos) 
@@ -229,6 +235,7 @@ def form_correcao_crt(request, id):
 
 
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_cedv',login_url='/login/')
 def form_correcao_cedv(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Correcao_CEDV_Form(instance=candidatos) 
@@ -249,6 +256,7 @@ def form_correcao_cedv(request, id):
 
 
 @login_required(login_url='/login/')
+@permission_required('core_cnhs_2.pode_manipular_cnh',login_url='/login/')
 def form_correcao_cnh(request, id):
     candidatos = get_object_or_404(Candidatos, cpf=id)
     form = Correcao_CNH_Form(instance=candidatos) 

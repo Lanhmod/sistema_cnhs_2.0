@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from importlib.resources import path
+from importlib.resources import path 
 import os
 from pathlib import Path
 
@@ -140,4 +140,16 @@ JAZZMIN_SETTINGS = {
     "site_header": "Detran - SCC",
     "site_brand": "Detran - SCC",
     "copyright": "@DOMHNAL",
+    "site_logo": "img/logo-detran.png",
+    "login_logo": "img/logo-detran-2.png",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "Bem-vindo(a) ao Sistema de Controle de Candidatos!",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "changeform_format": "horizontal_tabs",
+    "usermenu_links": [
+        {"name": "Sistema de Controle de Candidatos", "url": "http://127.0.0.1:8000/ ", "new_window": False},
+    ],
 }
+
+JAZZMIN_SETTINGS["show_ui_builder"] = True

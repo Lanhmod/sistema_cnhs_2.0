@@ -1,7 +1,5 @@
 from django.db import models
 from auditlog.registry import auditlog
-from auditlog.models import AuditlogHistoryField  
-from django.contrib.auth.models import User
 from django.utils.timezone import now
 
 
@@ -149,8 +147,8 @@ class Candidatos (models.Model):
             ("pode_manipular_jm", "pode manipular jm"),
             ("pode_manipular_crt", "pode manipular crt"),
             ("pode_manipular_cedv", "pode manipular cedv"),
-
         ]
+        ordering = ('data_criacao',)
 
     def __str__(self):
         return self.cpf 

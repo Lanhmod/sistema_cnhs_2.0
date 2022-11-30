@@ -2,6 +2,13 @@ h1 {
     color: rgb(11, 87, 239);
 }
 
+
+div.container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 div.pagination {
     margin-bottom: 20px;
 }

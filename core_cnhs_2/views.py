@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from core_cnhs_2.forms import Registros_CNH_Form, Registros_JM_Form, Registros_CRT_Form, Registros_CEDV_Form, Inscricao_Candidatos_Form, Correcao_CNH_Form, Correcao_CRT_Form, Correcao_CEDV_Form, Correcao_JM_Form
 from core_cnhs_2.models import Candidatos 
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required,permission_required
+from django.contrib.auth.decorators import login_required, permission_required 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -26,12 +26,13 @@ def submit_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         usuario = authenticate(username=username, password=password)
+        
         if usuario is not None:
             login(request, usuario)
             return redirect('/') 
-    else:
-        messages.error(request,'Usuário ou senha inválidos')
-        return redirect('/')
+        else:
+            messages.error(request,'Usuário ou senha inválidos')
+            return redirect('/')
 
 #################################################Lista de exibição####################################################
 
